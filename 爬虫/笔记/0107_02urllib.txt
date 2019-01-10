@@ -69,30 +69,57 @@ Request
 
 
 
+代理
+    ProxyHandler、build_opener
+    
+    >>> from urllib.request import ProxyHandler, build_opener
+    >>> proxy=ProxyHandler({'https':'https://119.101.116.63:9999'})
+    >>> opener = build_opener(proxy)
+    >>> res = opener.open('https://httpbin.org/get')
+    >>> print(res.read().decode('utf8'))
+    {
+      "args": {}, 
+      "headers": {
+        "Accept-Encoding": "identity", 
+        "Connection": "close", 
+        "Host": "httpbin.org", 
+        "User-Agent": "Python-urllib/3.7"
+      }, 
+      "origin": "119.101.116.63", 
+      "url": "https://httpbin.org/get"
+    }
+
+
+
+
+
 
 
 
 
 
 url拼接
->>> from urllib import parse
->>> wd = '机器学习'
->>> url = 'https:www.baidu.com/s?wd='+ parse.quote(wd)
->>> print(url)
-https:www.baidu.com/s?wd=%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0
+    >>> from urllib import parse
+    >>> wd = '机器学习'
+    >>> url = 'https:www.baidu.com/s?wd='+ parse.quote(wd)
+    >>> print(url)
+    https:www.baidu.com/s?wd=%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0
 
 
 反编码
-s = '%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0'
-parse.unquote(s)
+    s = '%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0'
+    parse.unquote(s)
 
 
 用字典分段拼接
-base_url = 'https://www.lagou.com/jobs.positonAjax.json?'
-params = {
-    'px': 'default',
-    'city': '深圳',
-    'Result': 'false'
-}
-url = base_url + parse.urlencode(params)
-print(url)
+    base_url = 'https://www.lagou.com/jobs.positonAjax.json?'
+    params = {
+        'px': 'default',
+        'city': '深圳',
+        'Result': 'false'
+    }
+    url = base_url + parse.urlencode(params)
+    print(url)
+
+    https://www.lagou.com/jobs.positonAjax.json?px=default&city=%E6%B7%B1%E5%9C%B3&Result=false
+

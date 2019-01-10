@@ -62,9 +62,33 @@ Request
     urllib.request中的一个类
     urllib.request.Request(url, data=None, headers={}, origin_req_host, unveriiable=False, method=None)
         url 用于请求url，是必传参数，其他都是可选
-        data    必须是字节流类型（bytes），如果它是字典，可以先用urllib.parse模块里的urlencode()编码。
+        data    必须是字节流类型（bytes），如果它是字典，可以先用urllib.parse模块里的urlencode()编码。date=None表示get请求
         headers 字典，表示请求头，可以直接构造，也可以调用请求实例的add_header()方法添加
         method  指定请求使用的方法，post get
+
+
+
+
+代理
+    ProxyHandler、build_opener
+    
+    >>> from urllib.request import ProxyHandler, build_opener
+    >>> proxy=ProxyHandler({'https':'https://119.101.116.63:9999'})
+    >>> opener = build_opener(proxy)
+    >>> res = opener.open('https://httpbin.org/get')
+    >>> print(res.read().decode('utf8'))
+    {
+      "args": {}, 
+      "headers": {
+        "Accept-Encoding": "identity", 
+        "Connection": "close", 
+        "Host": "httpbin.org", 
+        "User-Agent": "Python-urllib/3.7"
+      }, 
+      "origin": "119.101.116.63", 
+      "url": "https://httpbin.org/get"
+    }
+
 
 
 
@@ -96,3 +120,6 @@ params = {
 }
 url = base_url + parse.urlencode(params)
 print(url)
+
+https://www.lagou.com/jobs.positonAjax.json?px=default&city=%E6%B7%B1%E5%9C%B3&Result=false
+

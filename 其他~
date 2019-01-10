@@ -1,0 +1,6 @@
+sudo aria2c --conf-path=/etc/aria2/aria2.conf
+
+https://www.jianshu.com/p/3c1286c8a19d
+
+
+jqupyter notebook
